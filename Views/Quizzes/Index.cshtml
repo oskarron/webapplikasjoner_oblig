@@ -21,8 +21,7 @@
                 <td>@quiz.Title</td>
                 <td>@quiz.Description</td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@quiz.Id" class="btn btn-info">Details</a>
-                    <a asp-action="TakeQuiz" asp-route-id="@quiz.Id" class="btn btn-success">Play</a>
+                    <a asp-action="Take" asp-route-id="@quiz.Id" class="btn btn-success">Play</a>
                 </td>
             </tr>
         }

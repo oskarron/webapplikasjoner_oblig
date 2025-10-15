@@ -1,10 +1,14 @@
 using oblig.Models;
-namespace oblig.ViewModels;
+using System.Collections.Generic;
 
-public class TakeQuizViewModel
+namespace oblig.ViewModels
 {
-    public int QuizId { get; set; }
-    public int QuestionIndex { get; set; }
-    public Question Question { get; set; }
-    public int TotalQuestions { get; set; }
+    public class TakeQuizViewModel
+    {
+        public int QuizId { get; set; }
+        public int QuestionIndex { get; set; }
+        public Question Question { get; set; } = null!;
+        public int TotalQuestions { get; set; }
+        public IEnumerable<Answer> Answers => Question.Answers;
+    }
 }

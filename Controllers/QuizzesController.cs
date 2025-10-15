@@ -64,14 +64,15 @@ public class QuizzesController : Controller
         return View(quiz);
     }
 
-    // GET: Quizzes/Take/3
+    // GET: /Quizzes/Take?id=5
     public async Task<IActionResult> Take(int id, int questionIndex = 0)
     {
         var quiz = await _quizRepository.GetByIdAsync(id);
         if (quiz == null) return NotFound();
 
         var question = quiz.Questions.ElementAtOrDefault(questionIndex);
-        if (question == null) return RedirectToAction("Result", new { quizId = id });
+        if (question == null)
+            return RedirectToAction("Result", new { quizId = id });
 
         var model = new TakeQuizViewModel
         {
@@ -84,35 +85,35 @@ public class QuizzesController : Controller
         return View(model);
     }
 
-    // POST: Quizzes/Take
+    // POST: /Quizzes/Take
     [HttpPost]
     public async Task<IActionResult> Take(TakeQuizInputModel input)
     {
-        // Get the selected answer
         var answer = await _answerRepository.GetByIdAsync(input.SelectedAnswerId);
-
-        // Check correctness directly
         bool correct = answer?.IsCorrect ?? false;
 
-        // Update score
+        // Update score in TempData
         TempData[$"Score_{input.QuizId}"] = (TempData[$"Score_{input.QuizId}"] as int? ?? 0) + (correct ? 1 : 0);
 
+        // Move to next question
         int nextIndex = input.QuestionIndex + 1;
         return RedirectToAction("Take", new { id = input.QuizId, questionIndex = nextIndex });
     }
 
-    // GET: Quizzes/Result
-    public IActionResult Result(int quizId)
+    // GET: /Quizzes/Result?quizId=5
+    public async Task<IActionResult> Result(int quizId)
     {
         int score = TempData[$"Score_{quizId}"] as int? ?? 0;
-        var quiz = _quizRepository.GetByIdAsync(quizId).Result;
+        var quiz = await _quizRepository.GetByIdAsync(quizId);
+        if (quiz == null) return NotFound();
 
         var model = new QuizResultViewModel
         {
             Quiz = quiz,
             Score = score,
-            Total = quiz.Questions.Count
+            Total = quiz.Questions?.Count ?? 0
         };
+
         return View(model);
     }
 }

@@ -1,9 +1,9 @@
-namespace oblig.ViewModels;
-
-public class TakeQuizInputModel
+namespace oblig.ViewModels
 {
-    public int QuizId { get; set; }
-    public int QuestionId { get; set; }
-    public int SelectedAnswerId { get; set; }
-    public int QuestionIndex { get; set; }
+    public class TakeQuizInputModel
+    {
+        public int QuizId { get; set; }
+        public int QuestionIndex { get; set; }
+        public int SelectedAnswerId { get; set; }
+    }
 }

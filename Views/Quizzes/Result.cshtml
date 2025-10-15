@@ -1,0 +1,17 @@
+@model oblig.ViewModels.QuizResultViewModel
+
+@{
+    ViewData["Title"] = "Quiz Results";
+}
+
+<div class="container mt-4">
+    <h2>Results for "@Model.Quiz.Title"</h2>
+
+    <p class="lead">
+        You got <strong>@Model.Score</strong> out of <strong>@Model.Total</strong> correct.
+    </p>
+
+    <p>Percentage: <strong>@Model.Percentage.ToString("0.0")%</strong></p>
+
+    <a asp-action="Index" class="btn btn-secondary mt-3">Back to Quizzes</a>
+</div>

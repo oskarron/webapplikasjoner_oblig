@@ -65,3 +65,4 @@
 /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/oblig.pdb
 /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/oblig.genruntimeconfig.cache
 /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/ref/oblig.dll
+/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/oblig.sourcelink.json
