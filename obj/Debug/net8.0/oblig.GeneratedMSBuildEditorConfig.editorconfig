@@ -30,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVlc3Rpb25zL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/Views/Quizzes/AddQuestion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpenplcy9BZGRRdWVzdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/Views/Quizzes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUXVpenplcy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

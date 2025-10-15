@@ -1,0 +1,26 @@
+@using oblig.ViewModels
+@model CreateQuestionViewModel
+
+<h2>Add Question</h2>
+
+<form asp-action="AddQuestion" method="post">
+    <input type="hidden" asp-for="QuizId" />
+
+    <div class="mb-3">
+        <label asp-for="QuestionText" class="form-label">Question</label>
+        <input asp-for="QuestionText" class="form-control" />
+    </div>
+
+    <div class="mb-2 fw-bold">Answers (select the correct one)</div> <!-- <-- column label -->
+
+    @for (int i = 0; i < 4; i++)
+    {
+        <div class="d-flex align-items-center mb-2">
+            <input type="radio" name="CorrectAnswerIndex" value="@i" class="form-check-input" @(i == 0 ? "checked" : "") />
+            <input name="Answers[@i]" class="form-control" placeholder="Answer text" />
+        </div>
+    }
+
+    <button type="submit" name="action" value="AddAnother" class="btn btn-secondary me-2">Add Another Question</button>
+    <button type="submit" name="action" value="Finish" class="btn btn-primary">Finish Quiz</button>
+</form>

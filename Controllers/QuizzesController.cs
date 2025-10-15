@@ -40,22 +40,22 @@ public class QuizzesController : Controller
     {
         if (!ModelState.IsValid) return View(model);
 
-        var quiz = new Quiz { Title = model.Title, Description = model.Description };
+        var quiz = new Quiz
+        {
+            Title = model.Title,
+            Description = model.Description,
+            Questions = new List<Question>()
+        };
         await _quizRepository.AddAsync(quiz);
 
-        foreach (var q in model.Questions)
-        {
-            var question = new Question { Text = q.Text, QuizId = quiz.Id };
-            await _questionRepository.AddAsync(question);
-
-            foreach (var a in q.Answers)
-            {
-                var answer = new Answer { Text = a.Text, IsCorrect = a.IsCorrect, QuestionId = question.Id };
-                await _answerRepository.AddAsync(answer);
-            }
-        }
-
-        return RedirectToAction("Index");
+        // Redirect to add first question
+        return RedirectToAction("AddQuestion", new { quizId = quiz.Id });
+    }
+    [HttpGet]
+    public IActionResult AddQuestion(int quizId)
+    {
+        var model = new CreateQuestionViewModel { QuizId = quizId };
+        return View(model);
     }
     public async Task<IActionResult> Details(int id)
     {
@@ -63,6 +63,37 @@ public class QuizzesController : Controller
         if (quiz == null) return NotFound();
         return View(quiz);
     }
+    [HttpPost]
+    public async Task<IActionResult> AddQuestion(CreateQuestionViewModel model, string action)
+    {
+        if (!ModelState.IsValid) return View(model);
+
+        var question = new Question { Text = model.QuestionText };
+        for (int i = 0; i < 4; i++)
+        {
+            question.Answers.Add(new Answer
+            {
+                Text = model.Answers[i],
+                IsCorrect = i == model.CorrectAnswerIndex
+            });
+        }
+
+        var quiz = await _quizRepository.GetByIdAsync(model.QuizId);
+        if (quiz == null)
+        {
+            // The quiz doesn't exist, return 404
+            return NotFound("Quiz not found");
+        }
+
+        quiz.Questions.Add(question);
+        await _quizRepository.UpdateAsync(quiz);
+
+        if (action == "AddAnother")
+            return RedirectToAction("AddQuestion", new { quizId = model.QuizId });
+        else
+            return RedirectToAction("Index"); // finish quiz
+    }
+
 
     // GET: /Quizzes/Take?id=5
     public async Task<IActionResult> Take(int id, int questionIndex = 0)
