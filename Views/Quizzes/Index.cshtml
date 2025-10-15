@@ -1,0 +1,30 @@
+@model IEnumerable<oblig.Models.Quiz>
+
+@{
+    ViewData["Title"] = "All Quizzes";
+}
+
+<h1>All Quizzes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var quiz in Model)
+        {
+            <tr>
+                <td>@quiz.Title</td>
+                <td>@quiz.Description</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@quiz.Id" class="btn btn-info">Details</a>
+                    <a asp-action="TakeQuiz" asp-route-id="@quiz.Id" class="btn btn-success">Play</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

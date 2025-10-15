@@ -1,0 +1,69 @@
+@model oblig.ViewModels.CreateQuizViewModel
+
+<h2>Create Quiz</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Title:</label>
+        <input asp-for="Title" />
+    </div>
+    <div>
+        <label>Description:</label>
+        <textarea asp-for="Description"></textarea>
+    </div>
+
+    <div id="questions-container">
+        <div class="question">
+            <label>Question:</label>
+            <input name="Questions[0].Text" placeholder="Question text" />
+
+            <div class="answers">
+                <label>Answer:</label>
+                <input name="Questions[0].Answers[0].Text" placeholder="Answer text" />
+                <label>Correct:</label>
+                <input type="checkbox" name="Questions[0].Answers[0].IsCorrect" />
+            </div>
+
+            <button type="button" onclick="addAnswer(0)">Add Answer</button>
+        </div>
+    </div>
+
+    <button type="button" onclick="addQuestion()">Add Question</button>
+    <button type="submit">Publish Quiz</button>
+</form>
+
+<script>
+    let questionCount = 1;
+
+    function addQuestion() {
+        const container = document.getElementById('questions-container');
+        const html = `
+    <div class="question">
+        <label>Question:</label>
+        <input name="Questions[${questionCount}].Text" placeholder="Question text" />
+        <div class="answers">
+            <label>Answer:</label>
+            <input name="Questions[${questionCount}].Answers[0].Text" placeholder="Answer text" />
+            <label>Correct:</label>
+            <input type="checkbox" name="Questions[${questionCount}].Answers[0].IsCorrect" />
+        </div>
+        <button type="button" onclick="addAnswer(${questionCount})">Add Answer</button>
+    </div>`;
+        container.insertAdjacentHTML('beforeend', html);
+        questionCount++;
+    }
+
+    function addAnswer(questionIndex) {
+        const questionDiv = document.getElementsByClassName('question')[questionIndex];
+        const answersDiv = questionDiv.getElementsByClassName('answers')[0];
+        const answerCount = answersDiv.getElementsByTagName('input').length / 2; // text + checkbox
+        const html = `
+        <div>
+            <label>Answer:</label>
+            <input name="Questions[${questionIndex}].Answers[${answerCount}].Text" placeholder="Answer text" />
+            <label>Correct:</label>
+            <input type="checkbox" name="Questions[${questionIndex}].Answers[${answerCount}].IsCorrect" />
+        </div>`;
+        answersDiv.insertAdjacentHTML('beforeend', html);
+    }
+</script>

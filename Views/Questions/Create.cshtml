@@ -1,0 +1,17 @@
+@model oblig.Models.Question
+@{
+    ViewBag.Title = "Create Question";
+}
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Text"></label>
+        <input asp-for="Text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="QuizId"></label>
+        <input asp-for="QuizId" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Question</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

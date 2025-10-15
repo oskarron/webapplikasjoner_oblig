@@ -1,0 +1,25 @@
+@model oblig.Models.Quiz
+
+@{
+    ViewData["Title"] = "Quiz Details";
+}
+
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
+
+<h2>Questions</h2>
+@foreach (var q in Model.Questions)
+{
+    <div>
+        <strong>@q.Text</strong>
+        <ul>
+            @foreach (var a in q.Answers)
+            {
+                <li>@a.Text @if(a.IsCorrect){
+                    <strong>(Correct)</strong>
+                }
+            </li>
+        }
+    </ul>
+</div>
+}

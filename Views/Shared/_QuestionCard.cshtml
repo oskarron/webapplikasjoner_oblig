@@ -1,0 +1,20 @@
+@model oblig.Models.Question?
+
+@if (Model != null)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <p><strong>@Model.Text</strong></p>
+            @if (Model.Answers != null && Model.Answers.Any())
+            {
+                @for (int j = 0; j < Model.Answers.Count; j++)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Answers[@Model.Id]" value="@Model.Answers[j].Id" />
+                        <label class="form-check-label">@Model.Answers[j].Text</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

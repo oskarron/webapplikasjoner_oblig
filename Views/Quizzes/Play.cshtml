@@ -1,0 +1,21 @@
+@model oblig.Models.Quiz
+
+<h2>Play Quiz: @Model.Title</h2>
+
+<form asp-action="SubmitAnswers" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    @if (Model.Questions != null && Model.Questions.Any())
+    {
+        @foreach (var question in Model.Questions)
+        {
+            <partial name="_QuestionCard" model="question" />
+        }
+    }
+    else
+    {
+        <p>No questions available for this quiz.</p>
+    }
+
+    <button type="submit" class="btn btn-primary mt-3">Submit Quiz</button>
+</form>
