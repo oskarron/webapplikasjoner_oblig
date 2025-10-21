@@ -66,3 +66,8 @@
 /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/oblig.genruntimeconfig.cache
 /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/ref/oblig.dll
 /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/oblig.sourcelink.json
+/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/bin/Debug/net8.0/Serilog.dll
+/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/bin/Debug/net8.0/Serilog.Extensions.Logging.dll
+/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/bin/Debug/net8.0/Serilog.Sinks.File.dll
+/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/bin/Debug/net8.0/System.Diagnostics.DiagnosticSource.dll

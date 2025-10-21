@@ -1,0 +1,280 @@
+2025-10-21 03:28:03.385 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-21 03:28:03.450 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Quizzes" AS "q")
+2025-10-21 03:28:03.478 +02:00 [INF] User profile is available. Using '/Users/oskarronningstad/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-21 03:28:03.499 +02:00 [INF] Now listening on: http://localhost:5214
+2025-10-21 03:28:03.500 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-21 03:28:03.500 +02:00 [INF] Hosting environment: Development
+2025-10-21 03:28:03.500 +02:00 [INF] Content root path: /Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig
+2025-10-21 03:28:04.585 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/ - null null
+2025-10-21 03:28:04.589 +02:00 [WRN] Failed to determine the https port for redirect.
+2025-10-21 03:28:04.596 +02:00 [INF] Executing endpoint 'oblig.Controllers.HomeController.Index (oblig)'
+2025-10-21 03:28:04.600 +02:00 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller oblig.Controllers.HomeController (oblig).
+2025-10-21 03:28:04.613 +02:00 [INF] Executing ViewResult, running view Index.
+2025-10-21 03:28:04.664 +02:00 [INF] Executed ViewResult - view Index executed in 51.3563ms.
+2025-10-21 03:28:04.665 +02:00 [INF] Executed action oblig.Controllers.HomeController.Index (oblig) in 64.4046ms
+2025-10-21 03:28:04.665 +02:00 [INF] Executed endpoint 'oblig.Controllers.HomeController.Index (oblig)'
+2025-10-21 03:28:04.666 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/ - 200 null text/html; charset=utf-8 81.8087ms
+2025-10-21 03:28:04.679 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0 - null null
+2025-10-21 03:28:04.679 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2025-10-21 03:28:04.680 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo - null null
+2025-10-21 03:28:04.681 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/oblig.styles.css?v=BbsATs58sv_kz7V8vIFHjMnAHCOnnfvLxS_gHyJ9rSw - null null
+2025-10-21 03:28:04.686 +02:00 [INF] Sending file. Request path: '/oblig.styles.css'. Physical path: '/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/obj/Debug/net8.0/scopedcss/bundle/oblig.styles.css'
+2025-10-21 03:28:04.686 +02:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: '/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css'
+2025-10-21 03:28:04.686 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/wwwroot/js/site.js'
+2025-10-21 03:28:04.686 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/oblig.styles.css?v=BbsATs58sv_kz7V8vIFHjMnAHCOnnfvLxS_gHyJ9rSw - 499 1074 text/css 4.7784ms
+2025-10-21 03:28:04.686 +02:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: '/Users/oskarronningstad/dev/webapplikasjoner/exam_test/Oblig/oblig/wwwroot/css/site.css'
+2025-10-21 03:28:04.686 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/lib/bootstrap/dist/css/bootstrap.min.css - 499 162720 text/css 6.7725ms
+2025-10-21 03:28:04.686 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/js/site.js?v=hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo - 499 231 text/javascript 6.0464ms
+2025-10-21 03:28:04.687 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0 - 499 362 text/css 7.3999ms
+2025-10-21 03:28:05.709 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/Create - null null
+2025-10-21 03:28:05.710 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Create (oblig)'
+2025-10-21 03:28:05.711 +02:00 [INF] Route matched with {action = "Create", controller = "Quizzes"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Create() on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:05.713 +02:00 [INF] Executing ViewResult, running view Create.
+2025-10-21 03:28:05.736 +02:00 [INF] Executed ViewResult - view Create executed in 23.848ms.
+2025-10-21 03:28:05.737 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Create (oblig) in 25.2193ms
+2025-10-21 03:28:05.737 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Create (oblig)'
+2025-10-21 03:28:05.737 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/Create - 200 null text/html; charset=utf-8 28.687ms
+2025-10-21 03:28:07.847 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5214/Quizzes/Create - application/x-www-form-urlencoded 207
+2025-10-21 03:28:07.849 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Create (oblig)'
+2025-10-21 03:28:07.863 +02:00 [INF] Route matched with {action = "Create", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(oblig.ViewModels.CreateQuizViewModel) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:07.941 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 3), @p1='?' (Size = 2)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Quizzes" ("Description", "Title")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2025-10-21 03:28:07.952 +02:00 [INF] Executing RedirectResult, redirecting to /Quizzes/AddQuestion?quizId=3.
+2025-10-21 03:28:07.952 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Create (oblig) in 88.9123ms
+2025-10-21 03:28:07.952 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Create (oblig)'
+2025-10-21 03:28:07.953 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5214/Quizzes/Create - 302 0 null 106.2048ms
+2025-10-21 03:28:07.974 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/AddQuestion?quizId=3 - null null
+2025-10-21 03:28:07.975 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:07.976 +02:00 [INF] Route matched with {action = "AddQuestion", controller = "Quizzes"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddQuestion(Int32) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:07.979 +02:00 [INF] Executing ViewResult, running view AddQuestion.
+2025-10-21 03:28:07.984 +02:00 [INF] Executed ViewResult - view AddQuestion executed in 5.1128ms.
+2025-10-21 03:28:07.984 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.AddQuestion (oblig) in 8.3957ms
+2025-10-21 03:28:07.984 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:07.984 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/AddQuestion?quizId=3 - 200 null text/html; charset=utf-8 9.8129ms
+2025-10-21 03:28:14.780 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5214/Quizzes/AddQuestion - application/x-www-form-urlencoded 318
+2025-10-21 03:28:14.781 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:14.788 +02:00 [INF] Route matched with {action = "AddQuestion", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddQuestion(oblig.ViewModels.CreateQuestionViewModel, System.String) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:14.874 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-10-21 03:28:14.880 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."Title", "t0"."Id", "t0"."QuizId", "t0"."Text", "t0"."Id0", "t0"."IsCorrect", "t0"."QuestionId", "t0"."Text0"
+FROM (
+    SELECT "q"."Id", "q"."Description", "q"."Title"
+    FROM "Quizzes" AS "q"
+    WHERE "q"."Id" = @__id_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t0" ON "t"."Id" = "t0"."QuizId"
+ORDER BY "t"."Id", "t0"."Id"
+2025-10-21 03:28:14.902 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Questions" ("QuizId", "Text")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2025-10-21 03:28:14.904 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p2, @p3, @p4)
+RETURNING "Id";
+2025-10-21 03:28:14.904 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (Size = 2)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p0, @p1, @p2)
+RETURNING "Id";
+2025-10-21 03:28:14.904 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (Size = 1)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p0, @p1, @p2)
+RETURNING "Id";
+2025-10-21 03:28:14.904 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (Size = 1)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p0, @p1, @p2)
+RETURNING "Id";
+2025-10-21 03:28:14.907 +02:00 [INF] Executing RedirectResult, redirecting to /Quizzes/AddQuestion?quizId=3.
+2025-10-21 03:28:14.907 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.AddQuestion (oblig) in 118.6ms
+2025-10-21 03:28:14.907 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:14.907 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5214/Quizzes/AddQuestion - 302 0 null 127.414ms
+2025-10-21 03:28:14.912 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/AddQuestion?quizId=3 - null null
+2025-10-21 03:28:14.912 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:14.912 +02:00 [INF] Route matched with {action = "AddQuestion", controller = "Quizzes"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult AddQuestion(Int32) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:14.913 +02:00 [INF] Executing ViewResult, running view AddQuestion.
+2025-10-21 03:28:14.914 +02:00 [INF] Executed ViewResult - view AddQuestion executed in 0.9559ms.
+2025-10-21 03:28:14.914 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.AddQuestion (oblig) in 1.2975ms
+2025-10-21 03:28:14.914 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:14.914 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/AddQuestion?quizId=3 - 200 null text/html; charset=utf-8 1.6036ms
+2025-10-21 03:28:19.957 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5214/Quizzes/AddQuestion - application/x-www-form-urlencoded 322
+2025-10-21 03:28:19.958 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:19.958 +02:00 [INF] Route matched with {action = "AddQuestion", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddQuestion(oblig.ViewModels.CreateQuestionViewModel, System.String) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:19.965 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."Title", "t0"."Id", "t0"."QuizId", "t0"."Text", "t0"."Id0", "t0"."IsCorrect", "t0"."QuestionId", "t0"."Text0"
+FROM (
+    SELECT "q"."Id", "q"."Description", "q"."Title"
+    FROM "Quizzes" AS "q"
+    WHERE "q"."Id" = @__id_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t0" ON "t"."Id" = "t0"."QuizId"
+ORDER BY "t"."Id", "t0"."Id"
+2025-10-21 03:28:19.972 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Questions" ("QuizId", "Text")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2025-10-21 03:28:19.974 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p2, @p3, @p4)
+RETURNING "Id";
+2025-10-21 03:28:19.975 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p0, @p1, @p2)
+RETURNING "Id";
+2025-10-21 03:28:19.975 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p0, @p1, @p2)
+RETURNING "Id";
+2025-10-21 03:28:19.976 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Boolean), @p1='?' (DbType = Int32), @p2='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Answers" ("IsCorrect", "QuestionId", "Text")
+VALUES (@p0, @p1, @p2)
+RETURNING "Id";
+2025-10-21 03:28:19.977 +02:00 [INF] Executing RedirectResult, redirecting to /Quizzes.
+2025-10-21 03:28:19.977 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.AddQuestion (oblig) in 18.3628ms
+2025-10-21 03:28:19.977 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.AddQuestion (oblig)'
+2025-10-21 03:28:19.977 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5214/Quizzes/AddQuestion - 302 0 null 19.7273ms
+2025-10-21 03:28:19.982 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes - null null
+2025-10-21 03:28:19.982 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Index (oblig)'
+2025-10-21 03:28:19.985 +02:00 [INF] Route matched with {action = "Index", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:19.996 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-10-21 03:28:19.998 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "q"."Id", "q"."Description", "q"."Title", "t"."Id", "t"."QuizId", "t"."Text", "t"."Id0", "t"."IsCorrect", "t"."QuestionId", "t"."Text0"
+FROM "Quizzes" AS "q"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t" ON "q"."Id" = "t"."QuizId"
+ORDER BY "q"."Id", "t"."Id"
+2025-10-21 03:28:20.000 +02:00 [INF] Executing ViewResult, running view Index.
+2025-10-21 03:28:20.002 +02:00 [INF] Executed ViewResult - view Index executed in 2.6418ms.
+2025-10-21 03:28:20.002 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Index (oblig) in 17.6033ms
+2025-10-21 03:28:20.002 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Index (oblig)'
+2025-10-21 03:28:20.002 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes - 200 null text/html; charset=utf-8 20.7549ms
+2025-10-21 03:28:22.061 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/Take/3 - null null
+2025-10-21 03:28:22.061 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:22.067 +02:00 [INF] Route matched with {action = "Take", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Take(Int32, Int32) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:22.071 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."Title", "t0"."Id", "t0"."QuizId", "t0"."Text", "t0"."Id0", "t0"."IsCorrect", "t0"."QuestionId", "t0"."Text0"
+FROM (
+    SELECT "q"."Id", "q"."Description", "q"."Title"
+    FROM "Quizzes" AS "q"
+    WHERE "q"."Id" = @__id_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t0" ON "t"."Id" = "t0"."QuizId"
+ORDER BY "t"."Id", "t0"."Id"
+2025-10-21 03:28:22.075 +02:00 [INF] Executing ViewResult, running view Take.
+2025-10-21 03:28:22.085 +02:00 [INF] Executed ViewResult - view Take executed in 11.0742ms.
+2025-10-21 03:28:22.086 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Take (oblig) in 18.998ms
+2025-10-21 03:28:22.086 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:22.086 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/Take/3 - 200 null text/html; charset=utf-8 25.5098ms
+2025-10-21 03:28:23.983 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5214/Quizzes/Take/3 - application/x-www-form-urlencoded 227
+2025-10-21 03:28:23.984 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:23.992 +02:00 [INF] Route matched with {action = "Take", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Take(oblig.ViewModels.TakeQuizInputModel) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:24.005 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."IsCorrect", "a"."QuestionId", "a"."Text"
+FROM "Answers" AS "a"
+WHERE "a"."Id" = @__p_0
+LIMIT 1
+2025-10-21 03:28:24.006 +02:00 [INF] Executing RedirectResult, redirecting to /Quizzes/Take/3?questionIndex=1.
+2025-10-21 03:28:24.008 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Take (oblig) in 16.74ms
+2025-10-21 03:28:24.008 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:24.009 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5214/Quizzes/Take/3 - 302 0 null 25.4658ms
+2025-10-21 03:28:24.013 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/Take/3?questionIndex=1 - null null
+2025-10-21 03:28:24.014 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:24.014 +02:00 [INF] Route matched with {action = "Take", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Take(Int32, Int32) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:24.016 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."Title", "t0"."Id", "t0"."QuizId", "t0"."Text", "t0"."Id0", "t0"."IsCorrect", "t0"."QuestionId", "t0"."Text0"
+FROM (
+    SELECT "q"."Id", "q"."Description", "q"."Title"
+    FROM "Quizzes" AS "q"
+    WHERE "q"."Id" = @__id_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t0" ON "t"."Id" = "t0"."QuizId"
+ORDER BY "t"."Id", "t0"."Id"
+2025-10-21 03:28:24.017 +02:00 [INF] Executing ViewResult, running view Take.
+2025-10-21 03:28:24.019 +02:00 [INF] Executed ViewResult - view Take executed in 1.7768ms.
+2025-10-21 03:28:24.019 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Take (oblig) in 5.0571ms
+2025-10-21 03:28:24.019 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:24.019 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/Take/3?questionIndex=1 - 200 null text/html; charset=utf-8 5.7572ms
+2025-10-21 03:28:27.064 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5214/Quizzes/Take/3 - application/x-www-form-urlencoded 227
+2025-10-21 03:28:27.065 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:27.065 +02:00 [INF] Route matched with {action = "Take", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Take(oblig.ViewModels.TakeQuizInputModel) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:27.070 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."IsCorrect", "a"."QuestionId", "a"."Text"
+FROM "Answers" AS "a"
+WHERE "a"."Id" = @__p_0
+LIMIT 1
+2025-10-21 03:28:27.072 +02:00 [INF] Executing RedirectResult, redirecting to /Quizzes/Take/3?questionIndex=2.
+2025-10-21 03:28:27.072 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Take (oblig) in 7.141ms
+2025-10-21 03:28:27.072 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:27.073 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5214/Quizzes/Take/3 - 302 0 null 8.4437ms
+2025-10-21 03:28:27.076 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/Take/3?questionIndex=2 - null null
+2025-10-21 03:28:27.077 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:27.077 +02:00 [INF] Route matched with {action = "Take", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Take(Int32, Int32) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:27.080 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."Title", "t0"."Id", "t0"."QuizId", "t0"."Text", "t0"."Id0", "t0"."IsCorrect", "t0"."QuestionId", "t0"."Text0"
+FROM (
+    SELECT "q"."Id", "q"."Description", "q"."Title"
+    FROM "Quizzes" AS "q"
+    WHERE "q"."Id" = @__id_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t0" ON "t"."Id" = "t0"."QuizId"
+ORDER BY "t"."Id", "t0"."Id"
+2025-10-21 03:28:27.081 +02:00 [INF] Executing RedirectResult, redirecting to /Quizzes/Result?quizId=3.
+2025-10-21 03:28:27.081 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Take (oblig) in 4.0665ms
+2025-10-21 03:28:27.081 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Take (oblig)'
+2025-10-21 03:28:27.081 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/Take/3?questionIndex=2 - 302 0 null 4.9248ms
+2025-10-21 03:28:27.084 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5214/Quizzes/Result?quizId=3 - null null
+2025-10-21 03:28:27.085 +02:00 [INF] Executing endpoint 'oblig.Controllers.QuizzesController.Result (oblig)'
+2025-10-21 03:28:27.090 +02:00 [INF] Route matched with {action = "Result", controller = "Quizzes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Result(Int32) on controller oblig.Controllers.QuizzesController (oblig).
+2025-10-21 03:28:27.094 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."Title", "t0"."Id", "t0"."QuizId", "t0"."Text", "t0"."Id0", "t0"."IsCorrect", "t0"."QuestionId", "t0"."Text0"
+FROM (
+    SELECT "q"."Id", "q"."Description", "q"."Title"
+    FROM "Quizzes" AS "q"
+    WHERE "q"."Id" = @__id_0
+    LIMIT 1
+) AS "t"
+LEFT JOIN (
+    SELECT "q0"."Id", "q0"."QuizId", "q0"."Text", "a"."Id" AS "Id0", "a"."IsCorrect", "a"."QuestionId", "a"."Text" AS "Text0"
+    FROM "Questions" AS "q0"
+    LEFT JOIN "Answers" AS "a" ON "q0"."Id" = "a"."QuestionId"
+) AS "t0" ON "t"."Id" = "t0"."QuizId"
+ORDER BY "t"."Id", "t0"."Id"
+2025-10-21 03:28:27.099 +02:00 [INF] Executing ViewResult, running view Result.
+2025-10-21 03:28:27.109 +02:00 [INF] Executed ViewResult - view Result executed in 12.8317ms.
+2025-10-21 03:28:27.110 +02:00 [INF] Executed action oblig.Controllers.QuizzesController.Result (oblig) in 19.1111ms
+2025-10-21 03:28:27.110 +02:00 [INF] Executed endpoint 'oblig.Controllers.QuizzesController.Result (oblig)'
+2025-10-21 03:28:27.110 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5214/Quizzes/Result?quizId=3 - 200 null text/html; charset=utf-8 25.7396ms
+2025-10-21 03:28:31.636 +02:00 [INF] Application is shutting down...
