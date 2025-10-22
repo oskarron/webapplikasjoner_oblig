@@ -16,8 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Register repositories
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
-builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
-builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
+
 
 // Configure and add Serilog
 var loggerConfiguration = new LoggerConfiguration().MinimumLevel.Information().WriteTo.File($"Logs/app_{DateTime.Now:yyyyMMddHHmmss}.log");
