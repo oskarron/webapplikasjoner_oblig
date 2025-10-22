@@ -1,0 +1,28 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio / IDE
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vscode/
+
+# macOS system files
+.DS_Store
+
+# Local SQLite database
+QuizDatabase.db
+*.db
+
+# Logs
+Logs/
+
+# Temporary files
+*.tmp
+*.log
+
+# appsettings local overrides (optional, if you want to keep secrets local)
+appsettings.Development.json

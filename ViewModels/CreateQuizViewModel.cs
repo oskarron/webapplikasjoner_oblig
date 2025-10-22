@@ -1,7 +1,13 @@
-namespace oblig.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
-public class CreateQuizViewModel
+namespace oblig.ViewModels
 {
-    public string Title { get; set; } = null!;
-    public string Description { get; set; } = null!;
+    public class CreateQuizViewModel
+    {
+        [Required(ErrorMessage = "Title is required.")]
+        public string Title { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Description is required.")]
+        public string Description { get; set; } = string.Empty;
+    }
 }

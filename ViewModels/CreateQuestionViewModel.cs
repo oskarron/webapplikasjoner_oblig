@@ -1,21 +1,26 @@
 using System.ComponentModel.DataAnnotations;
-
 namespace oblig.ViewModels;
+
+public class ValidateAnswersAttribute : ValidationAttribute
+{
+    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+    {
+        var answers = value as List<string>;
+        if (answers == null || answers.Any(string.IsNullOrWhiteSpace))
+            return new ValidationResult("All answer fields must be filled in.");
+
+        return ValidationResult.Success;
+    }
+}
 
 public class CreateQuestionViewModel
 {
     [Required]
-    public int QuizId { get; set; }
-
-    [Required(ErrorMessage = "Question text is required.")]
     public string QuestionText { get; set; } = string.Empty;
 
-
-    [Required(ErrorMessage = "Please provide answers.")]
-    [MinLength(4, ErrorMessage = "You must provide 4 answers.")]
-    [MaxLength(4, ErrorMessage = "You must provide 4 answers.")]
+    [ValidateAnswers]
     public List<string> Answers { get; set; } = new List<string> { "", "", "", "" };
 
-    [Range(0, 3, ErrorMessage = "Select which answer is correct.")]
     public int CorrectAnswerIndex { get; set; }
+    public int QuizId { get; set; }
 }
