@@ -9,17 +9,14 @@ namespace oblig.Controllers;
 public class QuizzesController : Controller
 {
     private readonly IQuizRepository _quizRepository;
-    private readonly IQuestionRepository _questionRepository;
-    private readonly IAnswerRepository _answerRepository;
+    private readonly ILogger<QuizzesController> _logger;
 
     public QuizzesController(
         IQuizRepository quizRepository,
-        IQuestionRepository questionRepository,
-        IAnswerRepository answerRepository)
+        ILogger<QuizzesController> logger)
     {
         _quizRepository = quizRepository;
-        _questionRepository = questionRepository;
-        _answerRepository = answerRepository;
+        _logger = logger;
     }
 
     // GET: /Quizzes
@@ -29,12 +26,14 @@ public class QuizzesController : Controller
         return View(quizzes);
     }
 
+    // GET: /Quizzes/Create
     [HttpGet]
     public IActionResult Create()
     {
         return View();
     }
 
+    // POST: /Quizzes/Create
     [HttpPost]
     public async Task<IActionResult> Create(CreateQuizViewModel model)
     {
@@ -46,64 +45,100 @@ public class QuizzesController : Controller
             Description = model.Description,
             Questions = new List<Question>()
         };
-        await _quizRepository.AddAsync(quiz);
 
-        // Redirect to add first question
+        bool returnOk = await _quizRepository.CreateAsync(quiz);
+        if (!returnOk
+        )
+        {
+            _logger.LogError("[QuizController] Failed to create quiz: {Title}", model.Title);
+            ModelState.AddModelError("", "Failed to create quiz. Please try again.");
+            return View(model);
+        }
+
         return RedirectToAction("AddQuestion", new { quizId = quiz.Id });
     }
+
+    // GET: /Quizzes/AddQuestion
     [HttpGet]
     public IActionResult AddQuestion(int quizId)
     {
         var model = new CreateQuestionViewModel { QuizId = quizId };
         return View(model);
     }
-    public async Task<IActionResult> Details(int id)
-    {
-        var quiz = await _quizRepository.GetByIdAsync(id);
-        if (quiz == null) return NotFound();
-        return View(quiz);
-    }
+
+    // POST: /Quizzes/AddQuestion
     [HttpPost]
     public async Task<IActionResult> AddQuestion(CreateQuestionViewModel model, string action)
     {
-        if (!ModelState.IsValid) return View(model);
-
-        var question = new Question { Text = model.QuestionText };
-        for (int i = 0; i < 4; i++)
+        if (!ModelState.IsValid)
         {
-            question.Answers.Add(new Answer
-            {
-                Text = model.Answers[i],
-                IsCorrect = i == model.CorrectAnswerIndex
-            });
+            _logger.LogWarning("[QuizController] Invalid question model: {@Model}", model);
+            return View(model);
         }
 
         var quiz = await _quizRepository.GetByIdAsync(model.QuizId);
         if (quiz == null)
         {
-            // The quiz doesn't exist, return 404
-            return NotFound("Quiz not found");
+            _logger.LogError("[QuizzesController] Quiz not found when adding question  {QuizId:0000}", model.QuizId);
+            return BadRequest("Item not found for the QuizId");
         }
 
-        quiz.Questions.Add(question);
-        await _quizRepository.UpdateAsync(quiz);
+        for (int i = 0; i < model.Answers.Count; i++)
+        {
+            if (string.IsNullOrWhiteSpace(model.Answers[i]))
+            {
+                ModelState.AddModelError($"Answers[{i}]", "This answer cannot be empty.");
+            }
+        }
 
-        if (action == "AddAnother")
-            return RedirectToAction("AddQuestion", new { quizId = model.QuizId });
-        else
-            return RedirectToAction("Index"); // finish quiz
+
+        var question = new Question
+        {
+            Text = model.QuestionText,
+            Answers = model.Answers.Select((text, i) => new Answer
+            {
+                Text = text,
+                IsCorrect = i == model.CorrectAnswerIndex
+            }).ToList()
+        };
+
+        quiz.Questions.Add(question);
+        bool returnOk
+         = await _quizRepository.UpdateAsync(quiz);
+        if (!returnOk
+        )
+        {
+            _logger.LogError("[QuizController] Failed to add question '{Question}' to quiz {QuizId}", question.Text, quiz.Id);
+            ModelState.AddModelError("", "Failed to save question. Please try again.");
+            return View(model);
+        }
+
+        _logger.LogInformation("[QuizController] Added question '{Question}' to quiz {QuizId}", question.Text, quiz.Id);
+
+        return action == "AddAnother"
+            ? RedirectToAction("AddQuestion", new { quizId = quiz.Id })
+            : RedirectToAction("Index");
     }
 
-
-    // GET: /Quizzes/Take?id=5
+    // GET: /Quizzes/Take
     public async Task<IActionResult> Take(int id, int questionIndex = 0)
     {
         var quiz = await _quizRepository.GetByIdAsync(id);
-        if (quiz == null) return NotFound();
+        if (quiz == null)
+        {
+            _logger.LogError("[QuizzesController] Quiz not found when trying to play the QuizId {QuizId:0000}", id);
+            return BadRequest("Quiz not found for the QuizId");
+        }
 
         var question = quiz.Questions.ElementAtOrDefault(questionIndex);
         if (question == null)
-            return RedirectToAction("Result", new { quizId = id });
+        {
+            _logger.LogError(
+                "[QuizzesController] Question index {QuestionIndex} out of range for QuizId {QuizId:0000}",
+                questionIndex, id
+            );
+            return BadRequest("Question index out of range");
+        }
 
         var model = new TakeQuizViewModel
         {
@@ -120,23 +155,74 @@ public class QuizzesController : Controller
     [HttpPost]
     public async Task<IActionResult> Take(TakeQuizInputModel input)
     {
-        var answer = await _answerRepository.GetByIdAsync(input.SelectedAnswerId);
-        bool correct = answer?.IsCorrect ?? false;
+        // Get the quiz
+        var quiz = await _quizRepository.GetByIdAsync(input.QuizId);
+        if (quiz == null)
+        {
+            _logger.LogError(
+                "[QuizzesController] Quiz not found when trying to take QuizId {QuizId:0000}",
+                input.QuizId
+            );
+            return BadRequest("Quiz not found for the given QuizId.");
+        }
 
-        // Update score in TempData
+        // Get the current question
+        var question = quiz.Questions.ElementAtOrDefault(input.QuestionIndex);
+        if (question == null)
+        {
+            _logger.LogWarning(
+                "[QuizzesController] Question index {QuestionIndex} out of range for QuizId {QuizId:0000}",
+                input.QuestionIndex, input.QuizId
+            );
+            return RedirectToAction("Result", new { quizId = input.QuizId });
+        }
+
+        // Find the selected answer
+        var selectedAnswer = question.Answers.FirstOrDefault(a => a.Id == input.SelectedAnswerId);
+        if (selectedAnswer == null)
+        {
+            _logger.LogWarning(
+                "[QuizzesController] Selected answer Id {AnswerId} not found for QuestionId {QuestionId}",
+                input.SelectedAnswerId, question.Id
+            );
+            return RedirectToAction("Take", new { id = input.QuizId, questionIndex = input.QuestionIndex });
+        }
+
+        // Check correctness and update score
+        bool correct = selectedAnswer.IsCorrect;
         TempData[$"Score_{input.QuizId}"] = (TempData[$"Score_{input.QuizId}"] as int? ?? 0) + (correct ? 1 : 0);
+
+        _logger.LogInformation(
+            "[QuizzesController] Quiz {QuizId}: Question {QuestionIndex} answered. Correct: {Correct}",
+            input.QuizId, input.QuestionIndex, correct
+        );
 
         // Move to next question
         int nextIndex = input.QuestionIndex + 1;
         return RedirectToAction("Take", new { id = input.QuizId, questionIndex = nextIndex });
     }
 
-    // GET: /Quizzes/Result?quizId=5
+    // GET: /Quizzes/Result
     public async Task<IActionResult> Result(int quizId)
     {
-        int score = TempData[$"Score_{quizId}"] as int? ?? 0;
+        // Get the quiz
         var quiz = await _quizRepository.GetByIdAsync(quizId);
-        if (quiz == null) return NotFound();
+        if (quiz == null)
+        {
+            _logger.LogError(
+                "[QuizzesController] Quiz not found when trying to view results for QuizId {QuizId:0000}",
+                quizId
+            );
+            return NotFound("Quiz not found.");
+        }
+
+        // Retrieve the score from TempData
+        int score = TempData[$"Score_{quizId}"] as int? ?? 0;
+
+        _logger.LogInformation(
+            "[QuizzesController] Displaying results for QuizId {QuizId}. Score: {Score}/{TotalQuestions}",
+            quizId, score, quiz.Questions?.Count ?? 0
+        );
 
         var model = new QuizResultViewModel
         {
@@ -146,5 +232,31 @@ public class QuizzesController : Controller
         };
 
         return View(model);
+    }
+
+    // GET: /Quizzes/Delete/5
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var quiz = await _quizRepository.GetByIdAsync(id);
+        if (quiz == null)
+        {
+            _logger.LogError("[QuizzesController] Quiz not found for the QuizId {QuizId:0000}", id);
+            return BadRequest("Quiz not found for the QuizId");
+        }
+        return View(quiz);
+    }
+
+    // POST: /Quizzes/DeleteConfirmed/5
+    [HttpPost]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        bool returnOk = await _quizRepository.DeleteAsync(id);
+        if (!returnOk)
+        {
+            _logger.LogError("[QuizzesController] Quiz deletion failed for the QuizId {QuizId:0000}", id);
+            return BadRequest("Quiz deletion failed");
+        }
+        return RedirectToAction(nameof(Index));
     }
 }
