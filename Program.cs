@@ -32,7 +32,6 @@ var app = builder.Build();
 // Seed database in development
 if (app.Environment.IsDevelopment())
 {
-    DbInit.Seed(app);
 }
 
 app.UseHttpsRedirection();

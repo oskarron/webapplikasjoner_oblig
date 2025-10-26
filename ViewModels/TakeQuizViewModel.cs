@@ -9,6 +9,8 @@ namespace oblig.ViewModels
         public int QuestionIndex { get; set; }
         public Question Question { get; set; } = null!;
         public int TotalQuestions { get; set; }
+        public int CurrentScore { get; set; }
+
         public IEnumerable<Answer> Answers => Question.Answers;
     }
 }

@@ -121,31 +121,28 @@ public class QuizzesController : Controller
     }
 
     // GET: /Quizzes/Take
-    public async Task<IActionResult> Take(int id, int questionIndex = 0)
+    public async Task<IActionResult> Take(int quizId, int questionIndex = 0, int currentScore = 0)
     {
-        var quiz = await _quizRepository.GetByIdAsync(id);
+        var quiz = await _quizRepository.GetByIdAsync(quizId);
         if (quiz == null)
         {
-            _logger.LogError("[QuizzesController] Quiz not found when trying to play the QuizId {QuizId:0000}", id);
-            return BadRequest("Quiz not found for the QuizId");
+            _logger.LogError("[QuizzesController] Quiz not found for QuizId {QuizId:0000}", quizId);
+            return BadRequest("Quiz not found");
         }
 
-        var question = quiz.Questions.ElementAtOrDefault(questionIndex);
-        if (question == null)
+        if (questionIndex >= quiz.Questions.Count)
         {
-            _logger.LogError(
-                "[QuizzesController] Question index {QuestionIndex} out of range for QuizId {QuizId:0000}",
-                questionIndex, id
-            );
-            return BadRequest("Question index out of range");
+            _logger.LogInformation("[QuizzesController] All questions answered for QuizId {QuizId}", quizId);
+            return RedirectToAction("Result", new { quizId, score = currentScore });
         }
 
         var model = new TakeQuizViewModel
         {
-            QuizId = quiz.Id,
+            QuizId = quizId,
             QuestionIndex = questionIndex,
-            Question = question,
-            TotalQuestions = quiz.Questions.Count
+            Question = quiz.Questions.ElementAt(questionIndex),
+            TotalQuestions = quiz.Questions.Count,
+            CurrentScore = currentScore
         };
 
         return View(model);
@@ -153,53 +150,33 @@ public class QuizzesController : Controller
 
     // POST: /Quizzes/Take
     [HttpPost]
-    public async Task<IActionResult> Take(TakeQuizInputModel input)
+    public async Task<IActionResult> Take(TakeQuizViewModel input, int selectedAnswerId)
     {
-        // Get the quiz
         var quiz = await _quizRepository.GetByIdAsync(input.QuizId);
         if (quiz == null)
         {
-            _logger.LogError(
-                "[QuizzesController] Quiz not found when trying to take QuizId {QuizId:0000}",
-                input.QuizId
-            );
-            return BadRequest("Quiz not found for the given QuizId.");
+            _logger.LogError("[QuizzesController] Quiz not found for QuizId {QuizId:0000}", input.QuizId);
+            return BadRequest("Quiz not found");
         }
 
-        // Get the current question
         var question = quiz.Questions.ElementAtOrDefault(input.QuestionIndex);
         if (question == null)
         {
-            _logger.LogWarning(
-                "[QuizzesController] Question index {QuestionIndex} out of range for QuizId {QuizId:0000}",
-                input.QuestionIndex, input.QuizId
-            );
-            return RedirectToAction("Result", new { quizId = input.QuizId });
+            _logger.LogWarning("[QuizzesController] Question index {QuestionIndex} out of range for QuizId {QuizId:0000}", input.QuestionIndex, input.QuizId);
+            return RedirectToAction("Result", new { quizId = input.QuizId, score = input.CurrentScore });
         }
 
-        // Find the selected answer
-        var selectedAnswer = question.Answers.FirstOrDefault(a => a.Id == input.SelectedAnswerId);
+        var selectedAnswer = question.Answers.FirstOrDefault(a => a.Id == selectedAnswerId);
         if (selectedAnswer == null)
         {
-            _logger.LogWarning(
-                "[QuizzesController] Selected answer Id {AnswerId} not found for QuestionId {QuestionId}",
-                input.SelectedAnswerId, question.Id
-            );
-            return RedirectToAction("Take", new { id = input.QuizId, questionIndex = input.QuestionIndex });
+            _logger.LogWarning("[QuizzesController] Selected answer Id {AnswerId} not found for QuestionId {QuestionId}", selectedAnswerId, question.Id);
+            return RedirectToAction("Take", new { quizId = input.QuizId, questionIndex = input.QuestionIndex, currentScore = input.CurrentScore });
         }
 
-        // Check correctness and update score
-        bool correct = selectedAnswer.IsCorrect;
-        TempData[$"Score_{input.QuizId}"] = (TempData[$"Score_{input.QuizId}"] as int? ?? 0) + (correct ? 1 : 0);
-
-        _logger.LogInformation(
-            "[QuizzesController] Quiz {QuizId}: Question {QuestionIndex} answered. Correct: {Correct}",
-            input.QuizId, input.QuestionIndex, correct
-        );
-
-        // Move to next question
+        int newScore = input.CurrentScore + (selectedAnswer.IsCorrect ? 1 : 0);
         int nextIndex = input.QuestionIndex + 1;
-        return RedirectToAction("Take", new { id = input.QuizId, questionIndex = nextIndex });
+
+        return RedirectToAction("Take", new { quizId = input.QuizId, questionIndex = nextIndex, currentScore = newScore });
     }
 
     // GET: /Quizzes/Result
@@ -259,4 +236,6 @@ public class QuizzesController : Controller
         }
         return RedirectToAction(nameof(Index));
     }
+
+
 }
